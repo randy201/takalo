@@ -22,11 +22,14 @@ class Categorie extends CI_Controller {
         $this->load->view('allcategorie',$data);
     }
 
-    public function getAllObjet($categorie='',$idUser=2){
+    public function getAllObjet($categorie=''){
         $this->load->model('categorie_model');
+        $this->load->model('objet_model');
+        $idUser = $this->session->userdata('idUser');
         $data=array();
         $data['allObjet']=$this->categorie_model->getAllObjet($categorie,$idUser);
         $data['allType']=$this->categorie_model->getTypeCategorie();
+        $data['objetUser'] = $this->objet_model->getUserObjet($idUser);
         $this->load->view('allObjet',$data);
     }
 
