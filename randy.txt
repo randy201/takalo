@@ -1,5 +1,0 @@
-view :categorie
-model :categorie
-controllers: categorie
-
-liste objet autre utilisateur
