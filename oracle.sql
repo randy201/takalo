@@ -1,3 +1,5 @@
+test
+
 create table produit(
     idProduit VARCHAR(10) primary key,
     nomProduit VARCHAR(50),
