@@ -4,62 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="<?php echo site_url('assets/css/style.css') ?>" rel="stylesheet">
-
-    <link href="<?php echo site_url('assets/css/style.css') ?>" rel="stylesheet">
-    <link href="<?php echo site_url('assets/vendor/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
-    <link href="<?php echo site_url('assets/vendor/bootstrap-icons/bootstrap-icons.css')?>" rel="stylesheet">
-    <link href="<?php echo site_url('assets/vendor/boxicons/css/boxicons.min.css')?>" rel="stylesheet">
-    <link href="<?php echo site_url('assets/vendor/quill/quill.snow.css')?>" rel="stylesheet">
-    <link href="<?php echo site_url('assets/vendor/quill/quill.bubble.css')?>" rel="stylesheet">
-    <link href="<?php echo site_url('assets/vendor/remixicon/remixicon.css')?>" rel="stylesheet">
-    <link href="<?php echo site_url('assets/vendor/simple-datatables/style.css')?>" rel="stylesheet">
-
-    <script src="<?php echo site_url('assets/vendor/apexcharts/apexcharts.min.js')?>"></script>
-    <script src="<?php echo site_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
-    <script src="<?php echo site_url('assets/vendor/chart.js/chart.min.js')?>"></script>
-    <script src="<?php echo site_url('assets/vendor/echarts/echarts.min.js')?>"></script>
-    <script src="<?php echo site_url('assets/vendor/quill/quill.min.js')?>"></script>
-    <script src="<?php echo site_url('assets/vendor/simple-datatables/simple-datatables.js')?>"></script>
-    <script src="<?php echo site_url('assets/vendor/tinymce/tinymce.min.js')?>"></script>
-    <script src="<?php echo site_url('assets/vendor/php-email-form/validate.js')?>"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo site_url('assets/css/bootstrap/bootstrap.css');?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo site_url('assets/css/other/style.css');?>">
     <title>allObjet</title>
 </head>
 <body>
-    <div class="card pt-5">
-        <div class="card-body pt-3">
-            <ul class="list-group">
-                <?php foreach($allType as $type){?>
-                    <li class="list-group-item">
-                        <a href="<?php echo site_url('Categorie/getAllObjet/'.$type['nomCategorie'].'');?>"><?php echo $type['nomCategorie'];?></a>
-                    </li>
-            
-                <?php } ?>
-            </ul>
-        </div>
-    </div>
-
-    <section class="services">
-        <div class="container">
-            <div class="row">
-                <?php foreach($allObjet as $object){?>
-                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
-                        <div class="card">
-                            <div class="card-img" >
-                                <img src="<?php echo site_url('assets/img') ?>/original.jpeg" alt="" width="250px">
-                            </div>
-                            <div class="card-body" >
-                                <h5 class="card-title"><?php echo $object['nomObjet'];?> </h5>
-                                <p class="card-text">user: <?php echo $object['nom'];?> </p>
-                                <div class="read-more">objet:<?php echo $object['idObjet'];?> </div>
-                                <span><a href="<?php echo site_url('Echange/demande/'.$object['idObjet'].'')?> " > <button>echanger</button></a></span>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                <?php } ?>
+    <div class="container">
+        <?php include("application/views/inc/header.php");?>
+        <?php for($i=0; $i<count($allType); $i++){?>
+            <a href="<?php echo site_url('Categorie/getAllObjet/'.$allType[$i]['nomCategorie'].'');?>"><?php echo $allType[$i]['nomCategorie'];?></a>
+        <?php } ?>        
+        <br><br>
+        <?php for($i=0; $i<count($allObjet); $i++){?>
+            <div class="objet">
+                <div class="sary"><?php echo $allObjet[$i]['sary'];?></div>
+                <p>
+                    <span>Categorie:<?php echo $allObjet[$i]['nomCategorie'];?> </span>
+                    <span><?php echo $allObjet[$i]['nomObjet'];?> </span>
+                    <span>nom: <?php echo $allObjet[$i]['nom'];?> </span>
+                    <form action="<?php echo site_url('echange/demande');?>" method="get">
+                        <input type="hidden" name="idU2" value="<?php echo $allObjet[$i]['idObjet'];?>">
+                        <input type="hidden" name="ido2" value="<?php echo $allObjet[$i]['idUser'];?>">
+                        <select name="ido1" id="">
+                            <?php foreach($objetUser AS $obj) { ?>
+                                <option value="<?php echo $obj['idObjet'];?>"><?php echo $obj['nomObjet'];?></option>
+                            <?php } ?>
+                        </select>
+                        <input type="submit" value="Echanger">
+                    </form>
+                </p>
             </div>
-        </div>
-    </section>
+        <br>
+        <?php } ?>
+        <br>
+    </div>
 </body>
 </html>
