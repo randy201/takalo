@@ -6,6 +6,19 @@ class Categorie extends CI_Controller {
         $data=array();
         $data['allObjet']=$this->categorie_model->getAllCategorie($categorie);
         $data['allType']=$this->categorie_model->getTypeCategorie();
+        $data['allUser']=$this->categorie_model->getAllUser();
+        $data['echangeEffectuer']=$this->categorie_model->getAllEchangeEffectuer();
+        $this->load->view('allcategorie',$data);
+    }
+
+    public function getAllUser(){
+        $this->load->model('categorie_model');
+        $data=array();
+        $data['allUser']=$this->categorie_model->getAllUser();
+        $data['allObjet']=$this->categorie_model->getAllCategorie($categorie);
+        $data['allType']=$this->categorie_model->getTypeCategorie();
+        $data['echangeEffectuer']=$this->categorie_model->getAllEchangeEffectuer();
+
         $this->load->view('allcategorie',$data);
     }
 
