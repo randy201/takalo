@@ -33,20 +33,18 @@
         }
 
         public function getAllObjet($categorie,$idUser){
-            $this->load->database();
-            $query = $this->db->query(sprintf("select OB.idObjet,u.nom,c.nomCategorie,OB.nomObjet,DO.sary,DO.description from objet OB,detailObjet DO,categorie c,user u where c.idCategorie=OB.idCategorie and OB.idobjet=DO.idobjet and u.idUser=OB.idUser and u.idUser!=%s and c.nomCategorie= '%s' ",$idUser,$categorie));
+            $query = $this->db->query(sprintf("select idUser,idObjet,nom,nomCategorie,nomObjet,sary,description from objetdisponible where idUser!=%s and nomCategorie= '%s'",$idUser,$categorie));
             $result = $query->result_array();
             return $result;
         }
 
         public function supprimer($idCategorie){
-            $this->load->database();
             $this->db->delete('categorie', array('idCategorie'=>$idCategorie));  
             $this->db->delete('objet', array('idCategorie'=>$idCategorie));
         }
 
+
         public function ajouter($objet){
-            $this->load->database();
             $data = array('nomCategorie' => $objet);
             $this->db->insert('categorie',$data);    
         }
