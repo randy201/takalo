@@ -39,21 +39,27 @@
         </div>
     </div>
 
-    <br><br>
-    <?php for($i=0; $i<count($allObjet); $i++){?>
-        <div class="objet">
-            <div class="sary"><?php echo $allObjet[$i]['sary'];?> </div>
-            <span>nom_categorie:<?php echo $allObjet[$i]['nomCategorie'];?> </span>
-            <span>nom_Objet: <?php echo $allObjet[$i]['nomObjet'];?> </span>
-            <span>nom: <?php echo $allObjet[$i]['nom'];?> </span>
-            <span>objet:<?php echo $allObjet[$i]['idObjet'];?> </span>
-            <span><a href="<?php echo site_url('Echange/demande/'.$allObjet[$i]['idObjet'].'')?> " > <button>echanger</button></a></span>
-
+    <section class="services">
+        <div class="container">
+            <div class="row">
+                <?php foreach($allObjet as $object){?>
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                        <div class="card">
+                            <div class="card-img" >
+                                <img src="<?php echo site_url('assets/img') ?>/original.jpeg" alt="" width="250px">
+                            </div>
+                            <div class="card-body" >
+                                <h5 class="card-title"><?php echo $object['nomObjet'];?> </h5>
+                                <p class="card-text">user: <?php echo $object['nom'];?> </p>
+                                <div class="read-more">objet:<?php echo $object['idObjet'];?> </div>
+                                <span><a href="<?php echo site_url('Echange/demande/'.$object['idObjet'].'')?> " > <button>echanger</button></a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                <?php } ?>
+            </div>
         </div>
-        <br>
-    <?php } ?>
-        <br>
-
-    
+    </section>
 </body>
 </html>
