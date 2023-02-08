@@ -57,3 +57,10 @@ create table echange(
     FOREIGN key (idO2) references objet(idObjet)
 );
 
+create table proprietaire(
+    idUser int,
+    idObjet int,
+    dateReception datetime,
+    FOREIGN key (idUser) references user(idUser),
+    FOREIGN key (idObjet) references objet(idObjet)
+);
