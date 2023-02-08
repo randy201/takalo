@@ -1,0 +1,15 @@
+/* *{
+    outline: thin solid red;
+} */
+body{
+    background-color: rgba(240, 236, 236, 0.5);
+}
+
+.header{
+    background-color: white;
+};
+
+.demande{
+    height: 100px;
+    background-color: white;
+}
