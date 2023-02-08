@@ -10,6 +10,20 @@
             return $result;
         }
 
+        public function getAllUser(){
+            $this->load->database();
+            $query = $this->db->query(sprintf("select * from user where isAdmin=0"));
+            $result = $query->result_array();
+            return $result;
+        }
+
+        public function getAllEchangeEffectuer(){
+            $this->load->database();
+            $query = $this->db->query(sprintf(" select * from echange where dateAccepte is not null "));
+            $result = $query->result_array();
+            return $result;
+        }
+
         public function getTypeCategorie(){
             $this->load->database();
             $query = $this->db->get('categorie');
