@@ -64,3 +64,15 @@ create table proprietaire(
     FOREIGN key (idUser) references user(idUser),
     FOREIGN key (idObjet) references objet(idObjet)
 );
+
+create view infoObjet as 
+(select o.idObjet,nomObjet,idUser,o.idCategorie,valeur,sary,description,nomCategorie
+    from objet o
+    join DetailObjet do on o.idObjet = do.idObjet
+    join categorie c on o.idCategorie = c.idCategorie);
+    
+create view objetDisponible as 
+select o.idUser,o.idObjet,u.nom,o.nomCategorie,o.nomObjet,o.sary,o.description
+    from infoobjet o
+    join user u on u.idUser = o.idUser
+    where (o.idObjet not in (select idO1 from echange)) and (o.idObjet not in (select idO2 from echange));
