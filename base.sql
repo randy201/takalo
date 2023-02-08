@@ -56,3 +56,4 @@ create table echange(
     FOREIGN key (idO1) references objet(idObjet),
     FOREIGN key (idO2) references objet(idObjet)
 );
+
