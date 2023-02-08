@@ -75,7 +75,7 @@
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
                         <div class="card">
                             <span class="card-img" >
-                                <img src="<?php echo site_url('assets/img') ?>/original.jpeg" alt="">
+                                <img src="<?php echo site_url('assets/img') ?>/original.jpeg" alt=""  width="250px">
                             </span>
                             <div class="card-body" >
                                 <h5 class="card-title">nom_Objet: <?php echo $object['nomObjet'];?> </h5>
